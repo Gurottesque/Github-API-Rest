@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .endpoint {
+            margin-bottom: 20px;
+        }
+        .endpoint code {
+            display: block;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .params, .queries, .examples, .errors {
+            margin-bottom: 10px;
+        }
+        .param-item, .query-item, .error-item {
+            margin-bottom: 5px;
+        }
+        .param-item span, .query-item span, .error-item span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Github API Documentation</h1>
+        
+        <div class="endpoint">
+            <h2>1. Get User Information</h2>
+            <p><strong>Method:</strong> GET</p>
+            <p><strong>Endpoint:</strong> <code>/api/github/user/:username</code></p>
+            <div class="params">
+                <h3>Path Parameters:</h3>
+                <div class="param-item"><span>:username</span> (string) - GitHub username to get information about.</div>
+            </div>
+            <div class="queries">
+                <h3>Query Parameters (Optional):</h3>
+                <div class="query-item"><span>include_repos</span> (boolean) - Whether to include details about the user's public repositories. Default is <code>false</code></div>
+            </div>
+            <div class="examples">
+                <h3>Example:</h3>
+                <code>/api/github/user/username?include_repos=true</code>
+            </div>
+            <div class="errors">
+                <h3>Possible Errors:</h3>
+                <div class="error-item"><span>404 Not Found:</span> The provided username does not exist.</div>
+                <div class="error-item"><span>400 Bad Request:</span> The parameter <code>username</code> is not valid.</div>
+                <div class="error-item"><span>500 Internal Server Error:</span> Server error while processing the request.</div>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2>2. Get User Repositories</h2>
+            <p><strong>Method:</strong> GET</p>
+            <p><strong>Endpoint:</strong> <code>/api/github/user/:username/repos</code></p>
+            <div class="params">
+                <h3>Path Parameters:</h3>
+                <div class="param-item"><span>:username</span> (string) - GitHub username to get repositories for.</div>
+            </div>
+            <div class="queries">
+                <h3>Query Parameters (Optional):</h3>
+                <div class="query-item"><span>sort</span> (string) - Criterion to sort repositories. Possible values: <code>created</code> <code>updated</code> <code>pushed</code> <code>full_name</code> Default is <code>full_name</code></div>
+                <div class="query-item"><span>direction</span> (string) - Direction of sorting. Possible values: <code>asc</code> <code>desc</code> Default is <code>asc</code></div>
+            </div>
+            <div class="examples">
+                <h3>Example:</h3>
+                <code>/api/github/user/username/repos?sort=updated&direction=desc</code>
+            </div>
+            <div class="errors">
+                <h3>Possible Errors:</h3>
+                <div class="error-item"><span>404 Not Found:</span> The provided username does not exist.</div>
+                <div class="error-item"><span>400 Bad Request:</span> The parameter <code>username</code> is not valid.</div>
+                <div class="error-item"><span>500 Internal Server Error:</span> Server error while processing the request.</div>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h2>3. Get Repository Details</h2>
+            <p><strong>Method:</strong> GET</p>
+            <p><strong>Endpoint:</strong> <code>/api/github/user/:username/repos/:repo</code></p>
+            <div class="params">
+                <h3>Path Parameters:</h3>
+                <div class="param-item"><span>:username</span> (string) - GitHub username.</div>
+                <div class="param-item"><span>:repo</span> (string) - Name of the repository.</div>
+            </div>
+            <div class="examples">
+                <h3>Example:</h3>
+                <code>/api/github/user/:username/repos/:repo</code>
+            </div>
+            <div class="errors">
+                <h3>Possible Errors:</h3>
+                <div class="error-item"><span>404 Not Found:</span> The provided repository does not exist.</div>
+                <div class="error-item"><span>400 Bad Request:</span> The parameter <code>username</code> or <code>repo</code> is not valid.</div>
+                <div class="error-item"><span>500 Internal Server Error:</span> Server error while processing the request.</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
